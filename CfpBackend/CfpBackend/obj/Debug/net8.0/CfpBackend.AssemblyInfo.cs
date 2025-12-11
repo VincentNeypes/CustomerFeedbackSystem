@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CfpBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a658158861eb81cca9d7a10ed587a69dd38fe4d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf28d1e1815a1020c5cf354ac58b31338ed2b9dd")]
 [assembly: System.Reflection.AssemblyProductAttribute("CfpBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CfpBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

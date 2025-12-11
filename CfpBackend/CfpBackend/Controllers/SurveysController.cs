@@ -1,18 +1,20 @@
 ﻿using CfpBackend.Data;
 using CfpBackend.Models;
-using Microsoft.AspNetCore.Authorization; // Add this
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore; // Added for ToListAsync
 
 namespace CfpBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // <--- This locks the entire controller
+    [Authorize] // Default: Require Login
     public class SurveysController : ControllerBase
     {
         private readonly AppDbContext _context;
         public SurveysController(AppDbContext context) { _context = context; }
 
+        // POST: api/surveys (Secured: Only Admins can publish)
         [HttpPost]
         public async Task<ActionResult<Survey>> PostSurvey(Survey survey)
         {
@@ -21,12 +23,12 @@ namespace CfpBackend.Controllers
             return Ok(survey);
         }
 
-        // You likely need a GET method to list surveys for the dashboard too
+        // GET: api/surveys (Public: Customers need to see this!)
         [HttpGet]
+        [AllowAnonymous] 
         public async Task<ActionResult<IEnumerable<Survey>>> GetSurveys()
         {
-            // Simple implementation to fetch all surveys
-            return Ok(_context.Surveys);
+            return await _context.Surveys.ToListAsync();
         }
     }
 }

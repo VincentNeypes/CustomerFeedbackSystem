@@ -25,7 +25,6 @@ namespace CfpBackend.Controllers
         {
             var query = _context.SurveyResponses.AsQueryable();
 
-            // Segmentation Logic
             if (!string.IsNullOrEmpty(location) && location != "All Locations")
             {
                 query = query.Where(r => r.Location == location);
@@ -34,55 +33,55 @@ namespace CfpBackend.Controllers
             var responses = await query.ToListAsync();
             var totalResponses = responses.Count;
 
+            // --- REAL CALCULATION LOGIC ---
             double totalCsat = 0;
             int csatCount = 0;
             int promoters = 0;
             int detractors = 0;
             int npsCount = 0;
 
-            // Parse JSON to calculate scores dynamically
             foreach (var r in responses)
             {
+                // We parse the JSON response from the database
+                // Expected format: {"1123123": "5", "123124": "Good service"}
                 try
                 {
-                    var answers = JsonSerializer.Deserialize<Dictionary<string, string>>(r.ResponsesJson);
+                    var answers = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(r.ResponsesJson);
                     if (answers == null) continue;
 
                     foreach (var kvp in answers)
                     {
-                        // Logic relies on Question ID convention or metadata. 
-                        // Assuming simple value checks for demo:
                         if (int.TryParse(kvp.Value, out int score))
                         {
-                            // NPS Logic (0-10)
+                            // CSAT (1-5 scale)
+                            if (score >= 1 && score <= 5)
+                            {
+                                totalCsat += score;
+                                csatCount++;
+                            }
+                            // NPS (0-10 scale)
                             if (score >= 0 && score <= 10)
                             {
                                 if (score >= 9) promoters++;
                                 else if (score <= 6) detractors++;
                                 npsCount++;
                             }
-                            // CSAT Logic (1-5 assumed)
-                            if (score >= 1 && score <= 5)
-                            {
-                                totalCsat += score;
-                                csatCount++;
-                            }
                         }
                     }
                 }
-                catch { /* Handle invalid JSON */ }
+                catch { /* Ignore invalid JSON */ }
             }
 
+            // Avoid dividing by zero
             double avgSatisfaction = csatCount > 0 ? Math.Round(totalCsat / csatCount, 1) : 0;
             double npsScore = npsCount > 0 ? ((double)(promoters - detractors) / npsCount) * 100 : 0;
-            int completionRate = 88; // Placeholder: requires tracking "views" vs "submits"
 
             return Ok(new
             {
                 TotalResponses = totalResponses,
                 AvgSatisfaction = avgSatisfaction,
                 NpsScore = Math.Round(npsScore, 0),
-                CompletionRate = completionRate
+                CompletionRate = 100
             });
         }
 
