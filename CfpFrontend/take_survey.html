@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Value Your Feedback</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }</style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white w-full max-w-2xl rounded-xl shadow-lg overflow-hidden">
+        <!-- Header -->
+        <div class="bg-blue-600 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold" id="survey-title">Loading Survey...</h1>
+            <p class="opacity-90 mt-2" id="survey-desc">Connecting to server...</p>
+        </div>
+
+        <!-- Form Container -->
+        <form id="survey-form" class="p-8 space-y-6">
+            <!-- Dynamic Questions Injected Here -->
+            <div id="questions-container" class="space-y-6"></div>
+
+            <!-- Consent -->
+            <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                <label class="flex items-start space-x-3">
+                    <input type="checkbox" required class="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    <span class="text-xs text-gray-600 leading-tight">
+                        I agree to the <a href="#" class="text-blue-600 underline">Privacy Policy</a> and consent to my responses being used for service improvement.
+                    </span>
+                </label>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-200 shadow-md">
+                Submit Feedback
+            </button>
+        </form>
+
+        <!-- Success Message (Hidden by default) -->
+        <div id="success-screen" class="hidden p-12 text-center">
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="text-xl font-bold text-gray-800">Thank You!</h2>
+            <p class="text-gray-600 mt-2">Your feedback has been securely recorded.</p>
+        </div>
+    </div>
+
+    <script>
+        // Use the port from your terminal (e.g., 5075)
+        const API_BASE = 'http://localhost:5075/api';
+        let currentSurveyId = 0;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. FETCH THE LATEST SURVEY
+            try {
+                const res = await fetch(`${API_BASE}/surveys`);
+                if(!res.ok) throw new Error("Failed to fetch surveys");
+                
+                const surveys = await res.json();
+                
+                if (surveys.length === 0) {
+                    document.getElementById('survey-title').innerText = "No Active Surveys";
+                    document.getElementById('survey-desc').innerText = "Please check back later.";
+                    document.getElementById('survey-form').classList.add('hidden');
+                    return;
+                }
+
+                // Get the most recent survey
+                const latestSurvey = surveys[surveys.length - 1];
+                currentSurveyId = latestSurvey.id;
+
+                // Render Info
+                document.getElementById('survey-title').innerText = latestSurvey.title;
+                document.getElementById('survey-desc').innerText = latestSurvey.description || "We value your feedback";
+
+                // Render Questions
+                const questions = JSON.parse(latestSurvey.questionsJson);
+                const container = document.getElementById('questions-container');
+
+                questions.forEach(q => {
+                    let html = '';
+                    // RENDER: NPS
+                    if(q.type === 'nps') {
+                        html = `
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-3">${q.label}</label>
+                            <div class="flex justify-between gap-1">
+                                ${[0,1,2,3,4,5,6,7,8,9,10].map(n => 
+                                    `<label class="cursor-pointer">
+                                        <input type="radio" name="${q.id}" value="${n}" class="peer sr-only" required>
+                                        <div class="w-8 h-10 sm:w-10 sm:h-12 flex items-center justify-center border rounded-md peer-checked:bg-blue-600 peer-checked:text-white hover:bg-gray-50 transition">
+                                            ${n}
+                                        </div>
+                                    </label>`
+                                ).join('')}
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-400 mt-1">
+                                <span>Not Likely</span>
+                                <span>Very Likely</span>
+                            </div>
+                        </div>`;
+                    } 
+                    // RENDER: CSAT
+                    else if (q.type === 'csat') {
+                        html = `
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-3">${q.label}</label>
+                            <div class="flex space-x-4 text-2xl">
+                                ${[1,2,3,4,5].map(n => 
+                                    `<label class="cursor-pointer hover:scale-110 transition">
+                                        <input type="radio" name="${q.id}" value="${n}" class="sr-only peer">
+                                        <span class="opacity-50 peer-checked:opacity-100 filter grayscale peer-checked:grayscale-0">⭐</span>
+                                    </label>`
+                                ).join('')}
+                            </div>
+                        </div>`;
+                    }
+                    // RENDER: Text / Multi
+                    else {
+                        html = `
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">${q.label}</label>
+                            <textarea name="${q.id}" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none" rows="3" placeholder="Type here..."></textarea>
+                        </div>`;
+                    }
+                    container.insertAdjacentHTML('beforeend', html);
+                });
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('survey-title').innerText = "Error";
+                document.getElementById('survey-desc').innerText = "Could not load survey. Is the backend running?";
+            }
+
+            // 2. HANDLE SUBMIT
+            document.getElementById('survey-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Collect Answers
+                const formData = new FormData(e.target);
+                const answers = {};
+                formData.forEach((value, key) => answers[key] = value);
+
+                const payload = {
+                    surveyId: currentSurveyId,
+                    responsesJson: JSON.stringify(answers)
+                };
+
+                // Send to Backend
+                try {
+                    const res = await fetch(`${API_BASE}/surveyresponses`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (res.ok) {
+                        document.getElementById('survey-form').classList.add('hidden');
+                        document.getElementById('success-screen').classList.remove('hidden');
+                    } else {
+                        alert("Error saving response.");
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert("Server connection failed.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

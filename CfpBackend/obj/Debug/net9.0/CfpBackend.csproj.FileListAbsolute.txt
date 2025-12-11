@@ -1,0 +1,8 @@
+E:\school\app\CustomerFeedbackSystem\CfpBackend\obj\Debug\net9.0\CfpBackend.csproj.AssemblyReference.cache
+E:\school\app\CustomerFeedbackSystem\CfpBackend\obj\Debug\net9.0\rpswa.dswa.cache.json
+E:\school\app\CustomerFeedbackSystem\CfpBackend\obj\Debug\net9.0\CfpBackend.GeneratedMSBuildEditorConfig.editorconfig
+E:\school\app\CustomerFeedbackSystem\CfpBackend\obj\Debug\net9.0\CfpBackend.AssemblyInfoInputs.cache
+E:\school\app\CustomerFeedbackSystem\CfpBackend\obj\Debug\net9.0\CfpBackend.AssemblyInfo.cs
+E:\school\app\CustomerFeedbackSystem\CfpBackend\obj\Debug\net9.0\CfpBackend.csproj.CoreCompileInputs.cache
+E:\school\app\CustomerFeedbackSystem\CfpBackend\obj\Debug\net9.0\CfpBackend.MvcApplicationPartsAssemblyInfo.cs
+E:\school\app\CustomerFeedbackSystem\CfpBackend\obj\Debug\net9.0\CfpBackend.MvcApplicationPartsAssemblyInfo.cache

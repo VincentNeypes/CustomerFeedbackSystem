@@ -1,0 +1,6 @@
+@CfpBackend_HostAddress = http://localhost:5193
+
+GET {{CfpBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

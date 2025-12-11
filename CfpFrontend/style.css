@@ -1,0 +1,76 @@
+/* style.css */
+:root {
+    --sidebar-width: 260px;
+    --primary-color: #007bff; /* Bright Blue for buttons */
+    --sidebar-bg: #1e3a8a;    /* Deep Blue for Sidebar */
+    --bg-color: #f8f9fa;      /* Light Gray Background */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    color: #e0e7ff;
+    position: fixed;
+    height: 100vh;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.nav-item.active {
+    background-color: rgba(37, 99, 235, 0.5); /* Semi-transparent brighter blue */
+    color: white;
+    border-left-color: #60a5fa;
+}
+
+/* Main Content Area */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    width: calc(100% - var(--sidebar-width));
+}
+
+/* Custom Card Styling (Matches your screenshots) */
+.card-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Draggable Items */
+.draggable-item {
+    cursor: grab;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+.draggable-item:active {
+    cursor: grabbing;
+    transform: scale(0.98);
+}
+
+/* Toggle Switch */
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #68D391;
+}
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #68D391;
+}

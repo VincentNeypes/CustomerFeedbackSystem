@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics & Reporting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="p-6 text-xl font-bold tracking-wide border-b border-blue-900">
+                CFP Admin
+            </div>
+            <nav class="flex-grow mt-4">
+                <a href="index.html" class="nav-item">
+                    <span class="mr-3">🏠</span> Dashboard
+                </a>
+                <a href="surveys.html" class="nav-item">
+                    <span class="mr-3">📄</span> Surveys (Builder)
+                </a>
+                <a href="analytics.html" class="nav-item active">
+                    <span class="mr-3">📈</span> Analytics & Reports
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="mr-3">👥</span> User Management
+                </a>
+            </nav>
+            <div class="p-4 border-t border-blue-900">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-xs font-bold text-white">SA</div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-white">Admin Name</p>
+                        <p class="text-xs text-green-300">Super Admin</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Analytics & Reporting</h1>
+
+            <!-- Filter Bar -->
+            <div class="bg-white p-4 rounded-lg card-shadow mb-6 flex flex-wrap items-center gap-4">
+                <select class="border border-gray-300 rounded text-sm p-2 bg-white focus:ring-blue-500 focus:border-blue-500">
+                    <option>Date Range</option>
+                    <option>Last 7 Days</option>
+                    <option>Last 30 Days</option>
+                </select>
+                <select class="border border-gray-300 rounded text-sm p-2 bg-white focus:ring-blue-500 focus:border-blue-500">
+                    <option>All Locations (Segmentation)</option>
+                    <option>New York</option>
+                    <option>London</option>
+                </select>
+                <select class="border border-gray-300 rounded text-sm p-2 bg-white focus:ring-blue-500 focus:border-blue-500">
+                    <option>All Service Types</option>
+                    <option>Support</option>
+                    <option>Sales</option>
+                </select>
+                
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-medium transition">
+                    Apply Filters
+                </button>
+
+                <button class="ml-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition">
+                    Export Report (Excel/PDF)
+                </button>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <!-- Line Chart -->
+                <div class="bg-white p-6 rounded-lg card-shadow">
+                    <h3 class="text-sm font-bold text-gray-800 mb-4">Average Score Trend</h3>
+                    <div class="relative h-64 w-full">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+                <!-- Bar Chart -->
+                <div class="bg-white p-6 rounded-lg card-shadow">
+                    <h3 class="text-sm font-bold text-gray-800 mb-4">Satisfaction by Location</h3>
+                    <div class="relative h-64 w-full">
+                        <canvas id="locationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest Comments -->
+            <div class="bg-white p-6 rounded-lg card-shadow">
+                <h3 class="text-sm font-bold text-gray-800 mb-4">Latest Comments (Word Cloud/List)</h3>
+                <ul class="list-disc pl-5 space-y-2 text-sm text-gray-600">
+                    <li>"The service was incredibly fast and efficient."</li>
+                    <li>"I wish the support team was available on weekends."</li>
+                    <li>"Great experience overall, no complaints."</li>
+                </ul>
+            </div>
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="p-6 text-xl font-bold tracking-wide border-b border-blue-900">
+                CFP Admin
+            </div>
+            <nav class="flex-grow mt-4">
+                <a href="index.html" class="nav-item active">
+                    <span class="mr-3">🏠</span> Dashboard
+                </a>
+                <a href="surveys.html" class="nav-item">
+                    <span class="mr-3">📄</span> Surveys (Builder)
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="mr-3">📈</span> Analytics & Reports
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="mr-3">👥</span> User Management
+                </a>
+            </nav>
+            <div class="p-4 border-t border-blue-900">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-xs font-bold text-white">SA</div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-white">Admin Name</p>
+                        <p class="text-xs text-green-300">Super Admin</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="flex justify-between items-center mb-8">
+                <h1 class="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
+                <a href="surveys.html" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-sm shadow-sm transition">
+                    + Create New Survey
+                </a>
+            </header>
+
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-lg card-shadow">
+                    <p class="text-sm font-medium text-gray-500 mb-1">Total Responses</p>
+                    <p class="text-3xl font-bold text-gray-900">1,452</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-lg card-shadow">
+                    <p class="text-sm font-medium text-gray-500 mb-1">Average Satisfaction</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold text-gray-900 mr-2">4.2</p>
+                        <span class="text-sm text-gray-400">/ 5</span>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-lg card-shadow">
+                    <p class="text-sm font-medium text-gray-500 mb-1">NPS Score</p>
+                    <p class="text-3xl font-bold text-green-500">+45</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-lg card-shadow">
+                    <p class="text-sm font-medium text-gray-500 mb-1">Completion Rate</p>
+                    <p class="text-3xl font-bold text-gray-900">88%</p>
+                </div>
+            </div>
+
+            <!-- Trending Chart Container -->
+            <div class="bg-white p-6 rounded-lg card-shadow min-h-[400px]">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Trending Scores (Last 30 Days)</h2>
+                <!-- Placeholder style matches image exactly -->
+                <div class="w-full h-80 border-2 border-dashed border-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-sm">
+                    [Placeholder for Live Chart Visualization - Requires Chart.js integration]
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

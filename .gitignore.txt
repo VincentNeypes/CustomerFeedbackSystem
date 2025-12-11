@@ -1,0 +1,26 @@
+# Ignore Visual Studio temporary files, build results, and more
+
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build folders
+bin/
+obj/
+
+# Logs
+*.log
+
+# Visual Studio cache/options directory
+.vscode/
+
+# Backup and temporary files
+*.bak
+*.tmp
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
