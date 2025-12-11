@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE = 'http://localhost:5075/api'; // Check your port!
+    // IMPORTANT: Matches your running server port (5075)
+    const API_BASE = 'http://localhost:5075/api'; 
 
-    // ============================================
-    // 1. GLOBAL: Sidebar & Mobile Menu
-    // ============================================
+    // --- Sidebar Toggle ---
     const sidebar = document.querySelector('.sidebar');
     const menuToggle = document.getElementById('menu-toggle');
     if (menuToggle) {
@@ -12,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ============================================
-    // 2. SURVEY BUILDER LOGIC
-    // ============================================
+    // ============================================================
+    // REQUIREMENT 1 & 2: Survey Content & Platform Tools
+    // ============================================================
     const dropZone = document.getElementById('drop-zone');
     const publishBtn = document.getElementById('publish-btn');
     let questions = [];
@@ -27,18 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Drag Over
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('bg-blue-50', 'border-blue-300');
-        });
-
-        // Drag Leave
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('bg-blue-50', 'border-blue-300');
-        });
-
-        // Drop
+        // Drag/Drop Events
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-blue-50', 'border-blue-300'); });
+        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-blue-50', 'border-blue-300'); });
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.classList.remove('bg-blue-50', 'border-blue-300');
@@ -48,195 +38,131 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addQuestion(type) {
-        const placeholder = document.getElementById('empty-msg');
-        if (placeholder) placeholder.remove();
-
+        document.getElementById('empty-msg')?.remove();
         const id = Date.now();
-        let html = '';
-        let label = '';
-        
-        // --- 1. NPS ---
+        let html = '', label = '';
+
         if (type === 'nps') {
             label = "How likely are you to recommend us?";
-            html = `
-            <div class="bg-white border border-gray-200 p-4 mb-4 rounded-lg shadow-sm group" id="q-${id}">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-bold text-blue-600">🔢 NPS (0-10 Slider)</span>
-                    <span class="text-xs text-gray-400 cursor-move">:: Drag</span>
-                </div>
-                <textarea class="w-full p-2 border border-gray-300 rounded text-sm mb-3 focus:outline-none focus:border-blue-500" rows="2" onchange="updateLabel(${id}, this.value)">${label}</textarea>
-                <div class="flex justify-between items-center pt-2 border-t border-gray-50">
-                    <label class="inline-flex items-center text-xs text-gray-600"><input type="checkbox" class="form-checkbox text-blue-600 rounded mr-2" checked> Required</label>
-                    <button onclick="deleteQuestion(${id})" class="text-xs text-red-500 hover:text-red-700 font-medium">Delete</button>
-                </div>
-            </div>`;
-        } 
-        // --- 2. CSAT ---
-        else if (type === 'csat') {
-            label = "How satisfied are you with our service?";
-            html = `
-            <div class="bg-white border border-gray-200 p-4 mb-4 rounded-lg shadow-sm group" id="q-${id}">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-bold text-yellow-600">⭐ CSAT (1-5 Star)</span>
-                    <span class="text-xs text-gray-400 cursor-move">:: Drag</span>
-                </div>
-                <textarea class="w-full p-2 border border-gray-300 rounded text-sm mb-3 focus:outline-none focus:border-blue-500" rows="2" onchange="updateLabel(${id}, this.value)">${label}</textarea>
-                <div class="flex justify-between items-center pt-2 border-t border-gray-50">
-                    <label class="inline-flex items-center text-xs text-gray-600"><input type="checkbox" class="form-checkbox text-blue-600 rounded mr-2" checked> Required</label>
-                    <button onclick="deleteQuestion(${id})" class="text-xs text-red-500 hover:text-red-700 font-medium">Delete</button>
-                </div>
-            </div>`;
-        } 
-        // --- 3. Text Area ---
-        else if (type === 'text') {
-            label = "Please share any additional comments.";
-            html = `
-            <div class="bg-white border border-gray-200 p-4 mb-4 rounded-lg shadow-sm group" id="q-${id}">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-bold text-gray-600">📝 Text Area</span>
-                    <span class="text-xs text-gray-400 cursor-move">:: Drag</span>
-                </div>
-                <textarea class="w-full p-2 border border-gray-300 rounded text-sm mb-3 focus:outline-none focus:border-blue-500" rows="2" onchange="updateLabel(${id}, this.value)">${label}</textarea>
-                <div class="flex justify-between items-center pt-2 border-t border-gray-50">
-                    <label class="inline-flex items-center text-xs text-gray-600"><input type="checkbox" class="form-checkbox text-blue-600 rounded mr-2"> Optional</label>
-                    <button onclick="deleteQuestion(${id})" class="text-xs text-red-500 hover:text-red-700 font-medium">Delete</button>
-                </div>
-            </div>`;
-        }
-        // --- 4. Multiple Choice ---
-        else if (type === 'multi') {
-            label = "Which of the following describes you?";
-            html = `
-            <div class="bg-white border border-gray-200 p-4 mb-4 rounded-lg shadow-sm group" id="q-${id}">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-bold text-green-600">✅ Multiple Choice</span>
-                    <span class="text-xs text-gray-400 cursor-move">:: Drag</span>
-                </div>
-                <textarea class="w-full p-2 border border-gray-300 rounded text-sm mb-3 focus:outline-none focus:border-blue-500" rows="2" onchange="updateLabel(${id}, this.value)">${label}</textarea>
-                <div class="space-y-2 mb-3 pl-2 border-l-2 border-gray-100">
-                    <div class="flex items-center"><input type="radio" disabled class="mr-2"><input class="text-xs border-b border-gray-300 w-full focus:outline-none py-1" value="Option 1"></div>
-                    <div class="flex items-center"><input type="radio" disabled class="mr-2"><input class="text-xs border-b border-gray-300 w-full focus:outline-none py-1" value="Option 2"></div>
-                </div>
-                <div class="flex justify-between items-center pt-2 border-t border-gray-50">
-                    <label class="inline-flex items-center text-xs text-gray-600"><input type="checkbox" class="form-checkbox text-blue-600 rounded mr-2" checked> Required</label>
-                    <button onclick="deleteQuestion(${id})" class="text-xs text-red-500 hover:text-red-700 font-medium">Delete</button>
-                </div>
-            </div>`;
+            html = `<div class="bg-white border p-4 mb-4 rounded-lg shadow-sm" id="q-${id}"><div class="flex justify-between mb-2"><span class="font-bold text-blue-600">🔢 NPS</span> <button onclick="delQ(${id})" class="text-red-500 text-xs">Delete</button></div><input class="w-full border p-2 rounded text-sm" value="${label}" onchange="updQ(${id}, this.value)"></div>`;
+        } else if (type === 'csat') {
+            label = "How satisfied are you?";
+            html = `<div class="bg-white border p-4 mb-4 rounded-lg shadow-sm" id="q-${id}"><div class="flex justify-between mb-2"><span class="font-bold text-yellow-600">⭐ CSAT</span> <button onclick="delQ(${id})" class="text-red-500 text-xs">Delete</button></div><input class="w-full border p-2 rounded text-sm" value="${label}" onchange="updQ(${id}, this.value)"></div>`;
+        } else if (type === 'text') {
+            label = "Comments";
+            html = `<div class="bg-white border p-4 mb-4 rounded-lg shadow-sm" id="q-${id}"><div class="flex justify-between mb-2"><span class="font-bold text-gray-600">📝 Text</span> <button onclick="delQ(${id})" class="text-red-500 text-xs">Delete</button></div><input class="w-full border p-2 rounded text-sm" value="${label}" onchange="updQ(${id}, this.value)"></div>`;
+        } else if (type === 'multi') {
+            label = "Select an option";
+            html = `<div class="bg-white border p-4 mb-4 rounded-lg shadow-sm" id="q-${id}"><div class="flex justify-between mb-2"><span class="font-bold text-green-600">✅ Multi</span> <button onclick="delQ(${id})" class="text-red-500 text-xs">Delete</button></div><input class="w-full border p-2 rounded text-sm" value="${label}" onchange="updQ(${id}, this.value)"></div>`;
         }
 
         dropZone.insertAdjacentHTML('beforeend', html);
         questions.push({ id, type, label });
     }
 
-    // --- Helper Functions (Global Scope) ---
-    window.deleteQuestion = (id) => {
-        const el = document.getElementById(`q-${id}`);
-        if(el) el.remove();
-        questions = questions.filter(q => q.id !== id);
+    window.delQ = (id) => { document.getElementById(`q-${id}`).remove(); questions = questions.filter(q => q.id !== id); };
+    window.updQ = (id, val) => { questions.find(q => q.id === id).label = val; };
+
+    // REQUIREMENT 3: QR Code Generation (Visual)
+    if(window.location.pathname.includes('surveys.html')) {
+        const qrContainer = document.querySelector('.bg-gray-200.rounded'); 
+        if(qrContainer) {
+            // Point to the local take_survey.html file
+            // In a real deployment, this would be the public URL
+            const takeSurveyUrl = window.location.href.replace('surveys.html', 'take_survey.html');
+            qrContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(takeSurveyUrl)}" alt="QR Code" class="w-full h-full object-cover">`;
+            
+            // Also update the link text below it if it exists
+            const linkText = qrContainer.nextElementSibling;
+            if(linkText && linkText.tagName === 'A') {
+                linkText.href = takeSurveyUrl;
+                linkText.innerText = "Link to Survey";
+            }
+        }
     }
 
-    window.updateLabel = (id, val) => {
-        const q = questions.find(q => q.id === id);
-        if(q) q.label = val;
-    }
-
-    // --- Publish Logic ---
     if(publishBtn) {
         publishBtn.addEventListener('click', async () => {
+            if (questions.length === 0) return alert("Please add at least one question.");
             const titleInput = document.getElementById('survey-title-input');
             const title = titleInput ? titleInput.value : "Untitled Survey";
             
-            if (questions.length === 0) return alert("Please add at least one question.");
-
-            const payload = {
-                title: title,
-                description: "Published via Admin Panel",
-                isPublished: true,
-                questionsJson: JSON.stringify(questions)
-            };
-
             try {
-                // FIXED ENDPOINT: Sent to /api/surveys (not /api/users)
                 const res = await fetch(`${API_BASE}/surveys`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({ title, isPublished: true, questionsJson: JSON.stringify(questions) })
                 });
                 
                 if(res.ok) {
                     alert('✅ Survey Published Successfully!');
                     questions = [];
-                    dropZone.innerHTML = '<p id="empty-msg" class="text-center text-gray-400 text-sm mt-32 italic">Drag questions from the left panel and drop them here.</p>';
-                } else {
-                    alert('❌ Error publishing survey');
-                }
-            } catch(e) {
-                console.error(e);
-                alert('❌ Backend not reachable. Is the port correct?');
-            }
+                    dropZone.innerHTML = '<p id="empty-msg" class="text-center text-gray-400 text-sm mt-32 italic">Drag questions here...</p>';
+                } else alert('❌ Error publishing');
+            } catch(e) { console.error(e); alert('Backend Error'); }
         });
     }
 
-    // ============================================
-    // 3. ANALYTICS PAGE LOGIC
-    // ============================================
+    // ============================================================
+    // REQUIREMENT 4: Data Analysis & Visual Dashboards
+    // ============================================================
     const trendCtx = document.getElementById('trendChart');
     if (trendCtx) {
-        // Fetch real data logic can go here. Using mock for visual display.
-        new Chart(trendCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Avg Score',
-                    data: [3.5, 3.8, 4.0, 4.2, 4.1, 4.5],
-                    borderColor: '#3b82f6',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false }
-        });
+        fetch(`${API_BASE}/analytics/trends`)
+            .then(r => r.json())
+            .then(data => {
+                new Chart(trendCtx, {
+                    type: 'line',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Avg Score',
+                            data: data.data,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            })
+            .catch(e => console.error("Chart Error:", e));
 
         new Chart(document.getElementById('locationChart'), {
             type: 'bar',
             data: {
-                labels: ['New York', 'London', 'Tokyo', 'Berlin'],
+                labels: ['New York', 'London', 'Tokyo'],
                 datasets: [{
                     label: 'Satisfaction',
-                    data: [85, 72, 90, 65],
-                    backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
+                    data: [85, 72, 90],
+                    backgroundColor: ['#3b82f6', '#10b981', '#f59e0b']
                 }]
             },
             options: { responsive: true, maintainAspectRatio: false }
         });
     }
 
-    // ============================================
-    // 4. USERS PAGE LOGIC (Fetch & Add)
-    // ============================================
+    // ============================================================
+    // REQUIREMENT 5: Security & User Mgmt
+    // ============================================================
     const usersTable = document.getElementById('usersTable');
-    const addUserBtn = document.querySelector("button.bg-blue-600"); // "+ Add User" button
-
     if (usersTable) {
         fetchUsers();
-
-        // Add User Logic
-        if (addUserBtn && addUserBtn.innerText.includes("Add New User")) {
-            addUserBtn.addEventListener('click', async () => {
-                const name = prompt("Enter Name:");
-                const email = prompt("Enter Email:");
+        const addBtn = document.querySelector("button.bg-blue-600");
+        if (addBtn && addBtn.innerText.includes("Add New User")) {
+            addBtn.addEventListener('click', async () => {
+                const name = prompt("Name:");
+                const email = prompt("Email:");
                 if (!name || !email) return;
-
                 try {
                     await fetch(`${API_BASE}/users`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, email, role: "Analyst", status: "Active", passwordHash: "123" })
                     });
-                    fetchUsers(); // Refresh table
-                } catch(e) { console.error(e); alert("Failed to add user"); }
+                    fetchUsers();
+                } catch(e) { alert("Failed to add user"); }
             });
         }
     }
@@ -247,18 +173,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const users = await res.json();
             const tbody = usersTable.querySelector('tbody');
             tbody.innerHTML = ''; 
-
             users.forEach(user => {
                 const badgeColor = user.status === 'Active' ? 'green' : 'red';
-                const row = `
-                    <tr class="hover:bg-gray-50 transition border-b border-gray-100">
-                        <td class="p-4 text-sm font-medium text-gray-900">${user.name}</td>
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50 border-b">
+                        <td class="p-4 text-sm font-medium">${user.name}</td>
                         <td class="p-4 text-sm text-gray-500">${user.email}</td>
-                        <td class="p-4"><span class="px-3 py-1 text-xs font-medium rounded-full bg-red-100 text-red-800">${user.role}</span></td>
-                        <td class="p-4"><span class="px-3 py-1 text-xs font-medium rounded-full bg-${badgeColor}-100 text-${badgeColor}-800">${user.status}</span></td>
-                        <td class="p-4 text-sm"><a href="#" class="text-blue-600 hover:underline mr-3 font-medium">Edit</a></td>
+                        <td class="p-4"><span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">${user.role}</span></td>
+                        <td class="p-4"><span class="px-2 py-1 text-xs rounded-full bg-${badgeColor}-100 text-${badgeColor}-800">${user.status}</span></td>
+                        <td class="p-4 text-sm text-blue-600 cursor-pointer">Edit</td>
                     </tr>`;
-                tbody.innerHTML += row;
             });
         } catch (e) { console.error(e); }
     }

@@ -15,11 +15,10 @@ namespace CfpBackend.Controllers
             _context = context;
         }
 
-        // POST: api/SurveyResponses
         [HttpPost]
         public async Task<ActionResult<SurveyResponse>> PostResponse(SurveyResponse response)
         {
-            response.SubmittedAt = DateTime.UtcNow; // Set timestamp
+            response.SubmittedAt = DateTime.UtcNow;
             _context.SurveyResponses.Add(response);
             await _context.SaveChangesAsync();
             return Ok(response);
