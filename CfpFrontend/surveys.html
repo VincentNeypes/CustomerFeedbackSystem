@@ -9,44 +9,42 @@
 </head>
 <body class="bg-gray-50">
     <div class="flex min-h-screen">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="p-6 text-xl font-bold tracking-wide border-b border-blue-900">
                 CFP Admin
             </div>
             <nav class="flex-grow mt-4 flex flex-col">
-    <a href="index.html" class="nav-item">
-        <span class="mr-3">🏠</span> Dashboard
-    </a>
-    <a href="surveys.html" class="nav-item">
-        <span class="mr-3">📄</span> Surveys (Builder)
-    </a>
-    <a href="analytics.html" class="nav-item">
-        <span class="mr-3">📈</span> Analytics & Reports
-    </a>
-    <a href="users.html" class="nav-item">
-        <span class="mr-3">👥</span> User Management
-    </a>
+                <a href="index.html" class="nav-item">
+                    <span class="mr-3">🏠</span> Dashboard
+                </a>
+                <a href="surveys.html" class="nav-item active">
+                    <span class="mr-3">📄</span> Surveys (Builder)
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="mr-3">📈</span> Analytics & Reports
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="mr-3">👥</span> User Management
+                </a>
 
-    <a href="#" id="logout-btn" class="nav-item mt-auto hover:bg-red-50 text-red-300 hover:text-red-500 transition-colors">
-        <span class="mr-3">🚪</span> Logout
-    </a>
-</nav>
+                <a href="#" id="logout-btn" class="nav-item mt-auto hover:bg-red-50 text-red-300 hover:text-red-500 transition-colors">
+                    <span class="mr-3">🚪</span> Logout
+                </a>
+            </nav>
             <div class="p-4 border-t border-blue-900">
                 <div class="flex items-center">
-                    <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-xs font-bold text-white">SA</div>
+                    <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-xs font-bold text-white">U</div>
                     <div class="ml-3">
-                        <p class="text-sm font-medium text-white">Admin Name</p>
-                        <p class="text-xs text-green-300">Super Admin</p>
+                        <p id="sidebar-user-name" class="text-sm font-medium text-white">User</p>
+                        <p id="sidebar-user-role" class="text-xs text-green-300">Online</p>
                     </div>
                 </div>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
             <header class="flex justify-between items-center mb-8">
-                <h1 class="text-2xl font-bold text-gray-800">Survey Builder: New Feedback Form</h1>
+                <h1 class="text-2xl font-bold text-gray-800">Survey Builder</h1>
                 <button id="publish-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-sm shadow-sm transition">
                     Publish Survey
                 </button>
@@ -54,48 +52,40 @@
 
             <div class="grid grid-cols-12 gap-6">
                 
-                <!-- Left: Toolbox -->
                 <div class="col-span-3">
                     <div class="bg-white rounded-lg p-5 card-shadow">
-                        <h3 class="text-sm font-semibold text-gray-700 mb-4">Add Element</h3>
+                        <h3 class="text-sm font-semibold text-gray-700 mb-4">Add Question</h3>
                         <div class="space-y-3">
-                            <div class="draggable-item bg-blue-50 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-100 transition flex items-center" draggable="true" data-type="csat">
+                            <div class="draggable-item bg-blue-50 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-100 transition flex items-center cursor-move" draggable="true" data-type="csat">
                                 <span class="mr-2">⭐</span> CSAT (1-5 Star)
                             </div>
-                            <div class="draggable-item bg-blue-50 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-100 transition flex items-center" draggable="true" data-type="nps">
+                            <div class="draggable-item bg-blue-50 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-100 transition flex items-center cursor-move" draggable="true" data-type="nps">
                                 <span class="mr-2">🔢</span> NPS (0-10 Slider)
                             </div>
-                            <div class="draggable-item bg-blue-50 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-100 transition flex items-center" draggable="true" data-type="text">
+                            <div class="draggable-item bg-blue-50 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-100 transition flex items-center cursor-move" draggable="true" data-type="text">
                                 <span class="mr-2">📝</span> Text Area (Comments)
                             </div>
-                            <!-- NEW: Multiple Choice Button -->
-                            <div class="draggable-item bg-blue-50 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-100 transition flex items-center" draggable="true" data-type="multi">
+                            <div class="draggable-item bg-blue-50 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-100 transition flex items-center cursor-move" draggable="true" data-type="multi">
                                 <span class="mr-2">✅</span> Multiple Choice
                             </div>
                         </div>
-                        <button class="w-full mt-6 bg-gray-200 text-gray-700 py-2 rounded-md text-sm font-medium hover:bg-gray-300 transition">
-                            Save Draft
-                        </button>
                     </div>
                 </div>
 
-                <!-- Middle: Canvas -->
                 <div class="col-span-6">
                     <div id="drop-zone" class="bg-white rounded-lg p-6 card-shadow min-h-[600px] border-2 border-dashed border-gray-100 transition-colors">
                         <p id="empty-msg" class="text-center text-gray-400 text-sm mt-32 italic">
                             Drag questions from the left panel and drop them here.
                         </p>
                     </div>
-                    <p class="text-center text-xs text-gray-400 mt-4 italic">Add more questions from the left panel.</p>
                 </div>
 
-                <!-- Right: Settings -->
                 <div class="col-span-3">
                     <div class="bg-white rounded-lg p-5 card-shadow mb-6">
                         <h3 class="text-sm font-semibold text-gray-700 mb-4">Survey Settings</h3>
                         <div class="mb-4">
                             <label class="block text-xs font-medium text-gray-500 mb-1">Survey Title</label>
-                            <input id="survey-title-input" type="text" value="Title..." class="w-full text-sm border-gray-300 border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input id="survey-title-input" type="text" placeholder="Enter Survey Title" class="w-full text-sm border-gray-300 border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         <div class="mb-4">
                             <label class="block text-xs font-medium text-gray-500 mb-1">Thank You Message</label>
@@ -103,7 +93,6 @@
                         </div>
                         <div class="flex items-center justify-between mt-2">
                             <span class="text-xs font-medium text-gray-700">Status: <span class="text-red-500">Draft</span></span>
-                            <!-- Simple toggle -->
                             <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
                                 <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
                                 <label for="toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"></label>
@@ -114,10 +103,13 @@
                     <div class="bg-white rounded-lg p-5 card-shadow text-center">
                         <h3 class="text-sm font-semibold text-gray-700 mb-4 text-left">Distribution</h3>
                         <p class="text-xs text-gray-500 mb-2">Scan QR Code or use the link:</p>
-                        <div class="w-24 h-24 bg-gray-200 mx-auto rounded flex items-center justify-center text-xs text-gray-400 mb-3">
-                            [QR Code]
-                        </div>
-                        <a href="#" class="text-xs text-blue-500 break-all hover:underline">https://survey.app/q/4F9X</a>
+                        
+                        <div class="w-24 h-24 bg-gray-200 mx-auto rounded flex items-center justify-center text-xs text-gray-400 mb-3 overflow-hidden">
+                            </div>
+                        
+                        <a href="#" id="survey-link" class="text-xs text-blue-500 break-all hover:underline">
+                            Generating link...
+                        </a>
                     </div>
                 </div>
 
