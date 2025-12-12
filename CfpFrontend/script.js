@@ -243,23 +243,26 @@ document.addEventListener('DOMContentLoaded', () => {
         container.insertAdjacentHTML('beforeend', html);
     };
 
-    // --- QR Code Logic ---
-    if(window.location.pathname.includes('surveys.html')) {
-        const qrContainer = document.querySelector('.w-24.h-24.bg-gray-200'); // Targeted selector
-        const linkText = document.getElementById('survey-link');
-        
-        if(qrContainer && linkText) {
-            // Point to the live survey page on the current host
-            const takeSurveyUrl = `${window.location.origin}/take_survey.html`; // Dynamic Host
-            
-            // Generate QR
-            qrContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(takeSurveyUrl)}" alt="QR Code" class="w-full h-full object-cover">`;
-            qrContainer.classList.remove('bg-gray-200'); // Remove gray bg once loaded
-            
-            // Update Link
-            linkText.href = takeSurveyUrl;
-            linkText.innerText = "Link to Live Survey";
-        }
+   // ============================================================
+    // FIXED QR CODE LOGIC
+    // ============================================================
+    const qrContainer = document.getElementById('qr-container');
+    const linkText = document.getElementById('survey-link');
+
+    // Only run if the elements actually exist on the page
+    if (qrContainer && linkText) {
+        // 1. Calculate the Live Survey URL
+        // window.location.origin gives "http://localhost:5075"
+        const takeSurveyUrl = `${window.location.origin}/take_survey.html`;
+
+        // 2. Generate QR Code using a public API
+        qrContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(takeSurveyUrl)}" alt="QR Code" class="w-full h-full object-cover">`;
+        qrContainer.classList.remove('bg-gray-200'); // Clean up placeholder style
+
+        // 3. Update the Text Link
+        linkText.href = takeSurveyUrl;
+        linkText.innerText = "Link to Live Survey";
+        console.log("Survey Link Generated:", takeSurveyUrl);
     }
 
     // --- Publish Survey ---

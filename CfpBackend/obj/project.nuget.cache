@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TLGmbRRj2lU=",
+  "dgSpecHash": "JeOCW674UXI=",
   "success": true,
-  "projectFilePath": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\CfpBackend.csproj",
+  "projectFilePath": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cent\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\cent\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

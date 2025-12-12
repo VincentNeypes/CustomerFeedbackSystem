@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\CfpBackend.csproj": {}
+    "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend.csproj": {}
   },
   "projects": {
-    "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\CfpBackend.csproj": {
+    "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\CfpBackend.csproj",
+        "projectUniqueName": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend.csproj",
         "projectName": "CfpBackend",
-        "projectPath": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\CfpBackend.csproj",
+        "projectPath": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend.csproj",
         "packagesPath": "C:\\Users\\cent\\.nuget\\packages\\",
-        "outputPath": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\obj\\",
+        "outputPath": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
