@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|e:\\school\\app\\customerfeedbacksystem\\cfpbackend\\cfpbackend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|solutionrelative:cfpbackend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|e:\\school\\app\\customerfeedbacksystem\\cfpbackend\\cfpbackend\\controllers\\surveyscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|solutionrelative:cfpbackend\\controllers\\surveyscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|e:\\school\\app\\customerfeedbacksystem\\cfpbackend\\cfpbackend\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|solutionrelative:cfpbackend\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|e:\\school\\app\\customerfeedbacksystem\\cfpbackend\\cfpbackend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|solutionrelative:cfpbackend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|e:\\school\\app\\customerfeedbacksystem\\cfpbackend\\cfpbackend\\controllers\\surveyresponsescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|e:\\school\\app\\customerfeedbacksystem\\cfpbackend\\cfpbackend\\models\\appmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|solutionrelative:cfpbackend\\models\\appmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|e:\\school\\app\\customerfeedbacksystem\\cfpbackend\\cfpbackend\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|solutionrelative:cfpbackend\\controllers\\analyticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83DE9224-5E43-40D3-9723-A7EE542B64E3}|CfpBackend\\CfpBackend.csproj|e:\\school\\app\\customerfeedbacksystem\\cfpbackend\\cfpbackend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -62,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
@@ -74,8 +74,7 @@
               "RelativeToolTip": "CfpBackend\\CfpBackend.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-12-11T18:53:40.117Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-11T18:53:40.117Z"
             },
             {
               "$type": "Document",
@@ -87,8 +86,7 @@
               "RelativeToolTip": "CfpBackend\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-11T18:53:27.934Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-11T18:53:27.934Z"
             },
             {
               "$type": "Document",
@@ -99,8 +97,7 @@
               "ToolTip": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\CfpBackend.csproj",
               "RelativeToolTip": "CfpBackend\\CfpBackend.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-11T12:36:58.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-11T12:36:58.912Z"
             },
             {
               "$type": "Document",
@@ -112,12 +109,11 @@
               "RelativeToolTip": "CfpBackend\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-06T05:45:24.32Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-06T05:45:24.32Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SurveyResponsesController.cs",
               "DocumentMoniker": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\Controllers\\SurveyResponsesController.cs",
               "RelativeDocumentMoniker": "CfpBackend\\Controllers\\SurveyResponsesController.cs",
@@ -125,38 +121,36 @@
               "RelativeToolTip": "CfpBackend\\Controllers\\SurveyResponsesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T18:41:42.398Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T18:41:42.398Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "AnalyticsController.cs",
               "DocumentMoniker": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\Controllers\\AnalyticsController.cs",
               "RelativeDocumentMoniker": "CfpBackend\\Controllers\\AnalyticsController.cs",
               "ToolTip": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\Controllers\\AnalyticsController.cs",
               "RelativeToolTip": "CfpBackend\\Controllers\\AnalyticsController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwAEAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwFYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T17:38:46.729Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T17:38:46.729Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SurveysController.cs",
               "DocumentMoniker": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\Controllers\\SurveysController.cs",
               "RelativeDocumentMoniker": "CfpBackend\\Controllers\\SurveysController.cs",
               "ToolTip": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\Controllers\\SurveysController.cs",
               "RelativeToolTip": "CfpBackend\\Controllers\\SurveysController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-05T17:38:33.1Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UsersController.cs",
               "DocumentMoniker": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "CfpBackend\\Controllers\\UsersController.cs",
@@ -164,8 +158,7 @@
               "RelativeToolTip": "CfpBackend\\Controllers\\UsersController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T17:38:02.757Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T17:38:02.757Z"
             },
             {
               "$type": "Document",
@@ -177,12 +170,11 @@
               "RelativeToolTip": "CfpBackend\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T17:32:20.924Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T17:32:20.924Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AppModels.cs",
               "DocumentMoniker": "E:\\school\\app\\CustomerFeedbackSystem\\CfpBackend\\CfpBackend\\Models\\AppModels.cs",
               "RelativeDocumentMoniker": "CfpBackend\\Models\\AppModels.cs",
@@ -190,8 +182,7 @@
               "RelativeToolTip": "CfpBackend\\Models\\AppModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T17:31:37.879Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T17:31:37.879Z"
             },
             {
               "$type": "Document",
@@ -203,8 +194,7 @@
               "RelativeToolTip": "CfpBackend\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T17:28:33.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T17:28:33.337Z"
             },
             {
               "$type": "Document",
@@ -216,8 +206,7 @@
               "RelativeToolTip": "CfpBackend\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-05T17:27:47.796Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T17:27:47.796Z"
             },
             {
               "$type": "Document",
@@ -229,8 +218,7 @@
               "RelativeToolTip": "CfpBackend\\CfpBackend.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-05T17:22:26.551Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-05T17:22:26.551Z"
             }
           ]
         }
